@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>FriendFinder</title>
+
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+  <!-- Font Awesome Glyphicons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h2>FriendFinder</h2>
+    <hr>
+
+    <h3><strong>Friend List </strong></h3>
+    <hr>
+
+    <ul id="main-list">
+
+    </ul>
+
+    <footer class="footer">
+        <div class="container">
+          <p><a href="/api/friends">API Friends List</a> | <a href="/home">Home Page</a></p>
+        </div>
+      </footer>
+
+  <script type="text/javascript">
+     
+    $( document ).ready(function() {
+        // AJAX post the data to the friends API.
+        $.get("/api/allFriends", function(data) {
+            $mainListDiv = $("#main-list");
+             console.log(data);
+            data.friendsTable.forEach(item =>{
+                var newItem = "";
+                newItem += "<li>";
+                newItem += "<p><span><img height='125px' src=";
+                newItem += item.photo;
+                newItem += ">";
+                newItem += "<span>Name: ";
+                newItem += item.name;
+                newItem += "<p>Scores: ";
+                newItem += item.scores;
+                newItem += "</p></span></p>"
+                $mainListDiv.append(newItem); 
+                /*$.post("/api/closest", item, function(data){
+
+                });*/
+            });
+        });
+    });
+  </script>
+
+</body>
+
+</html>
