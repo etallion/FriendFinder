@@ -39,9 +39,11 @@ module.exports = function(app) {
     
     //1. Return the closest matching friend that was existing the in the friendsData
     var results = friendsData.closestMatch(req.body)
-    //2. Then add the new user (a new friend) to the friendsData 
-    //We'll do these 2 steps in this order so we don't have to 
+
+    //2. add the new user (a new friend) to the friendsData 
     friendsData.friendsTable.push(req.body);
+
+    
 
       res.json(results);
     
@@ -50,13 +52,25 @@ module.exports = function(app) {
   app.post("/api/closest", function(req, res) {
     var results = friendsData.closestMatch(req.body)
     res.json(results);
+   
   });
 
   app.get("/api/allFriends", function(req, res) {
     
-     // res.json(friendsData);
-     res.send(friendsData);
+    //find everyone's closest match
+    // var results = function(){;
+    //     var newTable = friendsData.friendsTable;
+    //     for(var i = 0; i < newTable.length; i++){
+    //         newTable[i].closest = newTable.closestMatchByIndex(i); 
+    //      }
+    //      return newTable;
+    // }
     
+        friendsData.setMatches(function(results){
+          console.log(JSON.stringify(results));
+          res.json(results);
+        }); 
+        //res.json(friendsData);
   });
 
 };

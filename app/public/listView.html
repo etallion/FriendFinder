@@ -7,6 +7,7 @@
 
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/stylesheet.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
@@ -24,10 +25,29 @@
 
     <h3><strong>Friend List </strong></h3>
     <hr>
+    
+    <!-- <div class="container-fuild" style="background-color:lightgrey;">
+        <div class="row">
+            <div class="col-md-3">
+                <img height="125px" src="images/defaultPhoto.png">
+            </div>
+             <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-4">Name:</div>
+                    <div class="col-md-8">Sample</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">Scores:</div>
+                    <div class="col-md-8"> 5,5,5,4,3,2,3,4,3,2,4</div>
+                </div>
+             </div>
+            </div>
+    </div> -->
 
-    <ul id="main-list">
 
-    </ul>
+    <div id="main-list">
+
+    </div>
 
     <footer class="footer">
         <div class="container">
@@ -43,17 +63,19 @@
             $mainListDiv = $("#main-list");
              console.log(data);
             data.friendsTable.forEach(item =>{
+                var deltaClosest = 1;
+                var deltaFurtherest =1;
                 var newItem = "";
-                newItem += "<li>";
-                newItem += "<p><span><img height='125px' src=";
+                newItem += '<div class="container" ><div class="row"><div class="col-sm-4"><img class ="profileImg" src=';
                 newItem += item.photo;
-                newItem += ">";
-                newItem += "<span>Name: ";
+                newItem += "></div>";
+                newItem += '<div class="col-md-4"><div class="row"><div class="col-md-2">Name:</div><div class="col-md-10">';
                 newItem += item.name;
-                newItem += "<p>Scores: ";
+                newItem += '</div></div><div class="row"><div class="col-md-2">Scores:</div><div class="col-md-10">';
                 newItem += item.scores;
-                newItem += "</p></span></p>"
-                $mainListDiv.append(newItem); 
+                newItem += "</div></div></div><div class='col-md-4'><div class='row'><div class='col-sm-6'>Closest<p><img src=" + data.friendsTable[item.closest[0]].photo + "></p><p>Name : " + data.friendsTable[item.closest[0]].name + "<br>Delta: " + item.closestDelta  + "</p></div><div class='col-sm-6'>Furtherest<p><img src=" + data.friendsTable[item.furthest[0]].photo + "></p><p>Name : " + data.friendsTable[item.furthest[0]].name + "<br>Delta : " + item.furthestDelta + "</div></div>";
+                newItem += '</div></div></div>';
+                    $mainListDiv.append(newItem); 
                 /*$.post("/api/closest", item, function(data){
 
                 });*/

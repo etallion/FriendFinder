@@ -1,0 +1,34 @@
+body{
+    /* background-color: orange; */
+}
+
+.row{
+    background-color: rgb(236, 236, 236);
+    margin: 4px 4px 4px 4px;
+}
+
+.col-md-4, .col-md-3, .col-md-2{
+    /* background-color: lightsteelblue; */
+    padding: 4px 4px 4px 4px;
+}
+
+.col-md-8, .col-md-9, .col-md-10{
+    background-color: white;
+    padding: 4px 4px 4px 4px;
+}
+
+img{
+    width: 125px;
+    height: 125px;
+    object-fit: cover;
+}
+
+.profileImg{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+h2 {
+    color : orange;
+}
